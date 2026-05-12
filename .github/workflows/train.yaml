@@ -1,0 +1,47 @@
+name: Run Training on GPU
+
+on:
+  workflow_dispatch:
+    inputs:
+      epochs:
+        description: 'Number of epochs'
+        required: false
+        default: '10'
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/train.py'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  gpu-training:
+    runs-on: gpu-runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run training script
+        env:
+          MODEL_BUCKET: ${{ vars.MODEL_BUCKET }} 
+          EPOCHS: ${{ inputs.epochs || 10 }}
+        run: python src/train.py
+
+      - name: Verify GPU (optional)
+        run: nvidia-smi
