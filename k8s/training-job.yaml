@@ -10,6 +10,7 @@ spec:
       labels:
         app: training-job
     spec:
+      ttlSecondsAfterFinished: 60
       tolerations:
         - key: nvidia.com/gpu
           operator: Equal
