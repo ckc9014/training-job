@@ -9,8 +9,6 @@ on:
       - 'src/**'
       - 'requirements.txt'
 
-# No hardcoded env here – we'll use vars.* inside jobs
-
 permissions:
   id-token: write
   contents: read
