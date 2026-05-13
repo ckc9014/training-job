@@ -23,7 +23,7 @@ spec:
 
       containers:
       - name: trainer
-        image: 862503802102.dkr.ecr.eu-west-1.amazonaws.com/training-repo:latest
+        image: 862503802102.dkr.ecr.eu-west-1.amazonaws.com/training-job:latest
         imagePullPolicy: Always
 
         resources:
