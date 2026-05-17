@@ -23,7 +23,7 @@ spec:
 
       containers:
       - name: trainer
-        image: 862503802102.dkr.ecr.eu-west-1.amazonaws.com/training-job:latest
+        image: 026090539489.dkr.ecr.us-east-2.amazonaws.com/shared-infra-dev-training:latest
         imagePullPolicy: Always
 
         resources:
@@ -34,7 +34,7 @@ spec:
 
         env:
         - name: MODEL_BUCKET
-          value: "training-bucket-86250380"   
+          value: "training-bucket-02609053"   
         - name: EPOCHS
           value: "15"
 
