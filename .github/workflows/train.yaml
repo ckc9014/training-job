@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   gpu-training:
-    runs-on: gpu-runner
+    runs-on: gpu-runner-set
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
